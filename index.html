@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Covid-19</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/styletailwind.css" />
+  </head>
+  <body class="bg-gray-300">
+    <div class="container mx-auto">
+      <h1 class="text-4xl text-center font-light mt-8 mb-8">
+        Pantau Corona Virus (COVID-19)
+      </h1>
+
+      <!-- <div class="text-3xl font-normal text-gray-800">Global</div> -->
+      <div class="card-container flex flex-wrap justify-center items-center data-global">
+        
+      </div>
+      <div class="text-center mt-5 last-update font-normal text-blue-800"></div>
+      <!-- end header -->
+      <div class="mt-8 data-country">
+       
+        </div>
+
+        <!-- table layout -->
+        <div class="text-3xl font-normal text-gray-800 mt-8 m-3">Global Case</div>
+        <div class="input mb-5">
+          <input type="text" class="search-data w-full md:w-1/4 h-10 py-2 px-3 text-blue-800 rounded shadow" placeholder="Search : Indonesia">
+        </div>
+        <div class="">
+            <div class="all-data card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 ">
+                  
+                  </div>
+                  <div class="text-center mt-5 mb-5">
+                      <p class="text-xl font-normal text-blue-500 hover:underline show-more">Show More</p>
+                  </div>
+            </div>
+        </div>
+        <div class="bg-gray-800 w-full h-16 items-center mt-16">
+          <div class="text-center text-gray-100 pt-2">Made by <a href="https://rahulsya.github.io/page" target="_blank" class="text-blue-700">rahulsya</a></div>
+          <div class="text-center text-gray-100">Data source from <a href="https://covid19.mathdro.id" target="_blank" class="text-blue-700">Mathdroid</a> API</div>
+        </div>
+      </div>
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+</html>
