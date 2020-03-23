@@ -41,7 +41,7 @@ function displayDataGlobal(data) {
 function displayDataLocal(data) {
   dataLocal.innerHTML = `
     <div class="text-3xl font-normal text-gray-800 mb-6 m-3">Indonesia</div>
-          <div class="bg-purple-900 rounded shadow-lg w-full md:w-1/2 px-16 py-4 text-gray-100 justify-between flex items-center">
+          <div class="bg-purple-900 rounded shadow-lg w-full md:w-1/2 px-5 md:px-16 py-4 text-gray-100 justify-between flex items-center">
             <div class="text-center">
               <p class="font-semibold text-lg">Positif</p>
               <p class="text-3xl">${numberFormat(data.confirmed.value)}</p>
@@ -90,8 +90,8 @@ showmore.addEventListener("click", () => {
   maxData += 6;
   getDataGlobal(url[2]).then(data => {
     if (search.value.length > 0) {
-      let newSearch = searchData(data);
-      displayAllData(newSearch.slice(minData, maxData));
+      let newSearchCase = searchCase(search.value, data);
+      displayAllData(newSearchCase.slice(minData, maxData));
     } else {
       displayAllData(data.slice(minData, maxData));
     }
@@ -100,8 +100,8 @@ showmore.addEventListener("click", () => {
 
 search.addEventListener("keyup", e => {
   getDataGlobal(url[2]).then(data => {
-    let newSearch = searchData(data);
-    displayAllData(newSearch.slice(minData, maxData));
+    let newSearchCase = searchCase(search.value, data);
+    displayAllData(newSearchCase.slice(minData, maxData));
   });
 });
 
@@ -109,10 +109,11 @@ function numberFormat(num) {
   return new Intl.NumberFormat().format(num);
 }
 
-function searchData(keyword) {
-  let filter = keyword.filter(country => {
-    country = country.countryRegion.toLowerCase();
-    return country.indexOf(search.value) > -1;
+// update filter pake regex
+function searchCase(keyword, data) {
+  const filter = data.filter(country => {
+    const regex = new RegExp(keyword, "gi");
+    return country.countryRegion.match(regex);
   });
   return filter;
 }
@@ -121,8 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
   getDataGlobal(url[0]).then(data => displayDataGlobal(data));
   getDataGlobal(url[1]).then(data => displayDataLocal(data));
   getDataGlobal(url[2]).then(data => {
-    // console.log(data.slice(0, 5).map(z => z));
     displayAllData(data.slice(minData, maxData));
   });
-  // console.log(search);
 });
